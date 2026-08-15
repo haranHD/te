@@ -132,347 +132,193 @@ function renderSectorIcon(icon: string) {
   }
 }
 
-const industries = [
+type IndustryThemeColor = 'navy' | 'gold' | 'teal' | 'indigo' | 'sky' | 'bronze' | 'amber' | 'azure' | 'purple' | 'green' | 'royal'
+
+const industryThemePresets: Record<
+  IndustryThemeColor,
   {
-    code: 'SEC-01',
-    name: 'Manufacturing',
-    desc: 'Costing, GST compliance, internal financial controls, inventory audit, and tax structuring.',
-    icon: 'factory',
-    theme: {
-      accent: '#1f3864',
-      cardBg: 'linear-gradient(160deg, #ffffff 45%, #f1f5fa 100%)',
-      borderColor: '#dbe4f0',
-      hoverBorder: '#1f3864',
-      hoverShadow: '0 14px 32px rgba(31, 56, 100, 0.12)',
-      topBar: 'linear-gradient(90deg, #1f3864 0%, #3b66ac 100%)',
-      iconGradient: 'linear-gradient(135deg, #2d508f 0%, #16294a 100%)',
-      iconShadow: '0 4px 12px rgba(31, 56, 100, 0.25)',
-      badgeBg: 'rgba(31, 56, 100, 0.08)',
-      badgeColor: '#1f3864',
-      badgeBorder: 'rgba(31, 56, 100, 0.18)',
-      linkColor: '#1f3864',
-    },
+    cardBg: string
+    borderColor: string
+    hoverBorder: string
+    hoverShadow: string
+    topBar: string
+    iconGradient: string
+    iconShadow: string
+    badgeBg: string
+    badgeColor: string
+    badgeBorder: string
+    linkColor: string
+  }
+> = {
+  navy: {
+    cardBg: 'linear-gradient(160deg, #ffffff 45%, #f1f5fa 100%)',
+    borderColor: '#dbe4f0',
+    hoverBorder: '#1f3864',
+    hoverShadow: '0 14px 32px rgba(31, 56, 100, 0.12)',
+    topBar: 'linear-gradient(90deg, #1f3864 0%, #3b66ac 100%)',
+    iconGradient: 'linear-gradient(135deg, #2d508f 0%, #16294a 100%)',
+    iconShadow: '0 4px 12px rgba(31, 56, 100, 0.25)',
+    badgeBg: 'rgba(31, 56, 100, 0.08)',
+    badgeColor: '#1f3864',
+    badgeBorder: 'rgba(31, 56, 100, 0.18)',
+    linkColor: '#1f3864',
   },
-  {
-    code: 'SEC-02',
-    name: 'Banking & Financial Services',
-    desc: 'Statutory bank audit, concurrent audit, regulatory compliance, and risk management.',
-    icon: 'landmark',
-    theme: {
-      accent: '#b08d57',
-      cardBg: 'linear-gradient(160deg, #ffffff 45%, #fdfaf4 100%)',
-      borderColor: '#eee3d2',
-      hoverBorder: '#b08d57',
-      hoverShadow: '0 14px 32px rgba(176, 141, 87, 0.14)',
-      topBar: 'linear-gradient(90deg, #b08d57 0%, #e0b469 100%)',
-      iconGradient: 'linear-gradient(135deg, #e5b358 0%, #b08d57 100%)',
-      iconShadow: '0 4px 12px rgba(176, 141, 87, 0.28)',
-      badgeBg: 'rgba(176, 141, 87, 0.12)',
-      badgeColor: '#967341',
-      badgeBorder: 'rgba(176, 141, 87, 0.25)',
-      linkColor: '#967341',
-    },
+  gold: {
+    cardBg: 'linear-gradient(160deg, #ffffff 45%, #fdfaf4 100%)',
+    borderColor: '#eee3d2',
+    hoverBorder: '#b08d57',
+    hoverShadow: '0 14px 32px rgba(176, 141, 87, 0.14)',
+    topBar: 'linear-gradient(90deg, #b08d57 0%, #e0b469 100%)',
+    iconGradient: 'linear-gradient(135deg, #e5b358 0%, #b08d57 100%)',
+    iconShadow: '0 4px 12px rgba(176, 141, 87, 0.28)',
+    badgeBg: 'rgba(176, 141, 87, 0.12)',
+    badgeColor: '#967341',
+    badgeBorder: 'rgba(176, 141, 87, 0.25)',
+    linkColor: '#967341',
   },
-  {
-    code: 'SEC-03',
-    name: 'NBFCs',
-    desc: 'RBI regulatory compliance, statutory audit, asset classification, and corporate governance.',
-    icon: 'trending',
-    theme: {
-      accent: '#0d9488',
-      cardBg: 'linear-gradient(160deg, #ffffff 45%, #f0fdf9 100%)',
-      borderColor: '#cbf0e7',
-      hoverBorder: '#0d9488',
-      hoverShadow: '0 14px 32px rgba(13, 148, 136, 0.12)',
-      topBar: 'linear-gradient(90deg, #0d9488 0%, #2dd4bf 100%)',
-      iconGradient: 'linear-gradient(135deg, #14b8a6 0%, #0f766e 100%)',
-      iconShadow: '0 4px 12px rgba(13, 148, 136, 0.25)',
-      badgeBg: 'rgba(13, 148, 136, 0.1)',
-      badgeColor: '#0f766e',
-      badgeBorder: 'rgba(13, 148, 136, 0.22)',
-      linkColor: '#0f766e',
-    },
+  teal: {
+    cardBg: 'linear-gradient(160deg, #ffffff 45%, #f0fdf9 100%)',
+    borderColor: '#cbf0e7',
+    hoverBorder: '#0d9488',
+    hoverShadow: '0 14px 32px rgba(13, 148, 136, 0.12)',
+    topBar: 'linear-gradient(90deg, #0d9488 0%, #2dd4bf 100%)',
+    iconGradient: 'linear-gradient(135deg, #14b8a6 0%, #0f766e 100%)',
+    iconShadow: '0 4px 12px rgba(13, 148, 136, 0.25)',
+    badgeBg: 'rgba(13, 148, 136, 0.1)',
+    badgeColor: '#0f766e',
+    badgeBorder: 'rgba(13, 148, 136, 0.22)',
+    linkColor: '#0f766e',
   },
-  {
-    code: 'SEC-04',
-    name: 'Information Technology',
-    desc: 'SEZ compliance, international taxation, transfer pricing, and IP structuring.',
-    icon: 'cpu',
-    theme: {
-      accent: '#4f46e5',
-      cardBg: 'linear-gradient(160deg, #ffffff 45%, #f4f5fe 100%)',
-      borderColor: '#dde1fc',
-      hoverBorder: '#4f46e5',
-      hoverShadow: '0 14px 32px rgba(79, 70, 229, 0.12)',
-      topBar: 'linear-gradient(90deg, #4f46e5 0%, #818cf8 100%)',
-      iconGradient: 'linear-gradient(135deg, #6366f1 0%, #4338ca 100%)',
-      iconShadow: '0 4px 12px rgba(79, 70, 229, 0.25)',
-      badgeBg: 'rgba(79, 70, 229, 0.1)',
-      badgeColor: '#4338ca',
-      badgeBorder: 'rgba(79, 70, 229, 0.22)',
-      linkColor: '#4338ca',
-    },
+  indigo: {
+    cardBg: 'linear-gradient(160deg, #ffffff 45%, #f4f5fe 100%)',
+    borderColor: '#dde1fc',
+    hoverBorder: '#4f46e5',
+    hoverShadow: '0 14px 32px rgba(79, 70, 229, 0.12)',
+    topBar: 'linear-gradient(90deg, #4f46e5 0%, #818cf8 100%)',
+    iconGradient: 'linear-gradient(135deg, #6366f1 0%, #4338ca 100%)',
+    iconShadow: '0 4px 12px rgba(79, 70, 229, 0.25)',
+    badgeBg: 'rgba(79, 70, 229, 0.1)',
+    badgeColor: '#4338ca',
+    badgeBorder: 'rgba(79, 70, 229, 0.22)',
+    linkColor: '#4338ca',
   },
-  {
-    code: 'SEC-05',
-    name: 'Healthcare & Pharma',
-    desc: 'Hospital accounting, regulatory compliance, GST advisory, and M&A due diligence.',
-    icon: 'heart',
-    theme: {
-      accent: '#0284c7',
-      cardBg: 'linear-gradient(160deg, #ffffff 45%, #f0f7fc 100%)',
-      borderColor: '#cbe5f7',
-      hoverBorder: '#0284c7',
-      hoverShadow: '0 14px 32px rgba(2, 132, 199, 0.12)',
-      topBar: 'linear-gradient(90deg, #0284c7 0%, #38bdf8 100%)',
-      iconGradient: 'linear-gradient(135deg, #38bdf8 0%, #0369a1 100%)',
-      iconShadow: '0 4px 12px rgba(2, 132, 199, 0.25)',
-      badgeBg: 'rgba(2, 132, 199, 0.1)',
-      badgeColor: '#0369a1',
-      badgeBorder: 'rgba(2, 132, 199, 0.22)',
-      linkColor: '#0369a1',
-    },
+  sky: {
+    cardBg: 'linear-gradient(160deg, #ffffff 45%, #f0f7fc 100%)',
+    borderColor: '#cbe5f7',
+    hoverBorder: '#0284c7',
+    hoverShadow: '0 14px 32px rgba(2, 132, 199, 0.12)',
+    topBar: 'linear-gradient(90deg, #0284c7 0%, #38bdf8 100%)',
+    iconGradient: 'linear-gradient(135deg, #38bdf8 0%, #0369a1 100%)',
+    iconShadow: '0 4px 12px rgba(2, 132, 199, 0.25)',
+    badgeBg: 'rgba(2, 132, 199, 0.1)',
+    badgeColor: '#0369a1',
+    badgeBorder: 'rgba(2, 132, 199, 0.22)',
+    linkColor: '#0369a1',
   },
-  {
-    code: 'SEC-06',
-    name: 'Infrastructure & Engineering',
-    desc: 'Project financing, joint venture structuring, EPC taxation, and forensic reviews.',
-    icon: 'building',
-    theme: {
-      accent: '#0f766e',
-      cardBg: 'linear-gradient(160deg, #ffffff 45%, #f0f9f6 100%)',
-      borderColor: '#cbf0e7',
-      hoverBorder: '#0f766e',
-      hoverShadow: '0 14px 32px rgba(15, 118, 110, 0.12)',
-      topBar: 'linear-gradient(90deg, #0f766e 0%, #14b8a6 100%)',
-      iconGradient: 'linear-gradient(135deg, #14b8a6 0%, #0f766e 100%)',
-      iconShadow: '0 4px 12px rgba(15, 118, 110, 0.25)',
-      badgeBg: 'rgba(15, 118, 110, 0.1)',
-      badgeColor: '#0f766e',
-      badgeBorder: 'rgba(15, 118, 110, 0.22)',
-      linkColor: '#0f766e',
-    },
+  bronze: {
+    cardBg: 'linear-gradient(160deg, #ffffff 45%, #fcf7f1 100%)',
+    borderColor: '#f6e3c9',
+    hoverBorder: '#b45309',
+    hoverShadow: '0 14px 32px rgba(180, 83, 9, 0.12)',
+    topBar: 'linear-gradient(90deg, #b45309 0%, #fbbf24 100%)',
+    iconGradient: 'linear-gradient(135deg, #f59e0b 0%, #9a3412 100%)',
+    iconShadow: '0 4px 12px rgba(180, 83, 9, 0.25)',
+    badgeBg: 'rgba(180, 83, 9, 0.1)',
+    badgeColor: '#b45309',
+    badgeBorder: 'rgba(180, 83, 9, 0.22)',
+    linkColor: '#b45309',
   },
-  {
-    code: 'SEC-07',
-    name: 'Real Estate & Construction',
-    desc: 'RERA compliance, capital gains tax advisory, joint development agreement (JDA) tax.',
-    icon: 'building',
-    theme: {
-      accent: '#b45309',
-      cardBg: 'linear-gradient(160deg, #ffffff 45%, #fcf7f1 100%)',
-      borderColor: '#f6e3c9',
-      hoverBorder: '#b45309',
-      hoverShadow: '0 14px 32px rgba(180, 83, 9, 0.12)',
-      topBar: 'linear-gradient(90deg, #b45309 0%, #fbbf24 100%)',
-      iconGradient: 'linear-gradient(135deg, #f59e0b 0%, #9a3412 100%)',
-      iconShadow: '0 4px 12px rgba(180, 83, 9, 0.25)',
-      badgeBg: 'rgba(180, 83, 9, 0.1)',
-      badgeColor: '#b45309',
-      badgeBorder: 'rgba(180, 83, 9, 0.22)',
-      linkColor: '#b45309',
-    },
+  amber: {
+    cardBg: 'linear-gradient(160deg, #ffffff 45%, #fefbf3 100%)',
+    borderColor: '#faebd4',
+    hoverBorder: '#d97706',
+    hoverShadow: '0 14px 32px rgba(217, 119, 6, 0.12)',
+    topBar: 'linear-gradient(90deg, #d97706 0%, #fcd34d 100%)',
+    iconGradient: 'linear-gradient(135deg, #fbbf24 0%, #d97706 100%)',
+    iconShadow: '0 4px 12px rgba(217, 119, 6, 0.25)',
+    badgeBg: 'rgba(217, 119, 6, 0.1)',
+    badgeColor: '#b45309',
+    badgeBorder: 'rgba(217, 119, 6, 0.22)',
+    linkColor: '#b45309',
   },
-  {
-    code: 'SEC-08',
-    name: 'Hospitality & Tourism',
-    desc: 'Operational audits, revenue assurance, lease transaction structuring, and tax filing.',
-    icon: 'users',
-    theme: {
-      accent: '#d97706',
-      cardBg: 'linear-gradient(160deg, #ffffff 45%, #fefbf3 100%)',
-      borderColor: '#faebd4',
-      hoverBorder: '#d97706',
-      hoverShadow: '0 14px 32px rgba(217, 119, 6, 0.12)',
-      topBar: 'linear-gradient(90deg, #d97706 0%, #fcd34d 100%)',
-      iconGradient: 'linear-gradient(135deg, #fbbf24 0%, #d97706 100%)',
-      iconShadow: '0 4px 12px rgba(217, 119, 6, 0.25)',
-      badgeBg: 'rgba(217, 119, 6, 0.1)',
-      badgeColor: '#b45309',
-      badgeBorder: 'rgba(217, 119, 6, 0.22)',
-      linkColor: '#b45309',
-    },
+  azure: {
+    cardBg: 'linear-gradient(160deg, #ffffff 45%, #f1f6fd 100%)',
+    borderColor: '#d0e1fc',
+    hoverBorder: '#2563eb',
+    hoverShadow: '0 14px 32px rgba(37, 99, 235, 0.12)',
+    topBar: 'linear-gradient(90deg, #2563eb 0%, #60a5fa 100%)',
+    iconGradient: 'linear-gradient(135deg, #60a5fa 0%, #1d4ed8 100%)',
+    iconShadow: '0 4px 12px rgba(37, 99, 235, 0.25)',
+    badgeBg: 'rgba(37, 99, 235, 0.1)',
+    badgeColor: '#1d4ed8',
+    badgeBorder: 'rgba(37, 99, 235, 0.22)',
+    linkColor: '#1d4ed8',
   },
-  {
-    code: 'SEC-09',
-    name: 'Retail & Consumer Goods',
-    desc: 'Supply chain GST, inventory audit, franchise structuring, and POS financial control.',
-    icon: 'shopping',
-    theme: {
-      accent: '#2563eb',
-      cardBg: 'linear-gradient(160deg, #ffffff 45%, #f1f6fd 100%)',
-      borderColor: '#d0e1fc',
-      hoverBorder: '#2563eb',
-      hoverShadow: '0 14px 32px rgba(37, 99, 235, 0.12)',
-      topBar: 'linear-gradient(90deg, #2563eb 0%, #60a5fa 100%)',
-      iconGradient: 'linear-gradient(135deg, #60a5fa 0%, #1d4ed8 100%)',
-      iconShadow: '0 4px 12px rgba(37, 99, 235, 0.25)',
-      badgeBg: 'rgba(37, 99, 235, 0.1)',
-      badgeColor: '#1d4ed8',
-      badgeBorder: 'rgba(37, 99, 235, 0.22)',
-      linkColor: '#1d4ed8',
-    },
+  purple: {
+    cardBg: 'linear-gradient(160deg, #ffffff 45%, #f6f4fe 100%)',
+    borderColor: '#e5dcfa',
+    hoverBorder: '#7c3aed',
+    hoverShadow: '0 14px 32px rgba(124, 58, 237, 0.12)',
+    topBar: 'linear-gradient(90deg, #7c3aed 0%, #a78bfa 100%)',
+    iconGradient: 'linear-gradient(135deg, #a78bfa 0%, #6d28d9 100%)',
+    iconShadow: '0 4px 12px rgba(124, 58, 237, 0.25)',
+    badgeBg: 'rgba(124, 58, 237, 0.1)',
+    badgeColor: '#6d28d9',
+    badgeBorder: 'rgba(124, 58, 237, 0.22)',
+    linkColor: '#6d28d9',
   },
-  {
-    code: 'SEC-10',
-    name: 'E-Commerce & Digital Business',
-    desc: 'TDS/TCS marketplace compliance, cross-border payments, and startup valuation.',
-    icon: 'rocket',
-    theme: {
-      accent: '#7c3aed',
-      cardBg: 'linear-gradient(160deg, #ffffff 45%, #f6f4fe 100%)',
-      borderColor: '#e5dcfa',
-      hoverBorder: '#7c3aed',
-      hoverShadow: '0 14px 32px rgba(124, 58, 237, 0.12)',
-      topBar: 'linear-gradient(90deg, #7c3aed 0%, #a78bfa 100%)',
-      iconGradient: 'linear-gradient(135deg, #a78bfa 0%, #6d28d9 100%)',
-      iconShadow: '0 4px 12px rgba(124, 58, 237, 0.25)',
-      badgeBg: 'rgba(124, 58, 237, 0.1)',
-      badgeColor: '#6d28d9',
-      badgeBorder: 'rgba(124, 58, 237, 0.22)',
-      linkColor: '#6d28d9',
-    },
+  green: {
+    cardBg: 'linear-gradient(160deg, #ffffff 45%, #f0fdf4 100%)',
+    borderColor: '#cbf3d8',
+    hoverBorder: '#16a34a',
+    hoverShadow: '0 14px 32px rgba(22, 163, 74, 0.12)',
+    topBar: 'linear-gradient(90deg, #16a34a 0%, #4ade80 100%)',
+    iconGradient: 'linear-gradient(135deg, #4ade80 0%, #15803d 100%)',
+    iconShadow: '0 4px 12px rgba(22, 163, 74, 0.25)',
+    badgeBg: 'rgba(22, 163, 74, 0.1)',
+    badgeColor: '#15803d',
+    badgeBorder: 'rgba(22, 163, 74, 0.22)',
+    linkColor: '#15803d',
   },
-  {
-    code: 'SEC-11',
-    name: 'Logistics & Transportation',
-    desc: 'Fleet GST compliance, vehicle lease taxation, and multi-state tax structuring.',
-    icon: 'truck',
-    theme: {
-      accent: '#0369a1',
-      cardBg: 'linear-gradient(160deg, #ffffff 45%, #f0f8fd 100%)',
-      borderColor: '#cce6f8',
-      hoverBorder: '#0369a1',
-      hoverShadow: '0 14px 32px rgba(3, 105, 161, 0.12)',
-      topBar: 'linear-gradient(90deg, #0369a1 0%, #38bdf8 100%)',
-      iconGradient: 'linear-gradient(135deg, #38bdf8 0%, #0369a1 100%)',
-      iconShadow: '0 4px 12px rgba(3, 105, 161, 0.25)',
-      badgeBg: 'rgba(3, 105, 161, 0.1)',
-      badgeColor: '#0284c7',
-      badgeBorder: 'rgba(3, 105, 161, 0.22)',
-      linkColor: '#0284c7',
-    },
+  royal: {
+    cardBg: 'linear-gradient(160deg, #ffffff 45%, #f0f4fd 100%)',
+    borderColor: '#cfdcfa',
+    hoverBorder: '#1e3a8a',
+    hoverShadow: '0 14px 32px rgba(30, 58, 138, 0.12)',
+    topBar: 'linear-gradient(90deg, #1e3a8a 0%, #3b82f6 100%)',
+    iconGradient: 'linear-gradient(135deg, #3b82f6 0%, #1e3a8a 100%)',
+    iconShadow: '0 4px 12px rgba(30, 58, 138, 0.25)',
+    badgeBg: 'rgba(30, 58, 138, 0.1)',
+    badgeColor: '#1e3a8a',
+    badgeBorder: 'rgba(30, 58, 138, 0.22)',
+    linkColor: '#1e3a8a',
   },
-  {
-    code: 'SEC-12',
-    name: 'Renewable Energy',
-    desc: 'ESG reporting, subsidy compliance, project finance due diligence, and direct tax.',
-    icon: 'leaf',
-    theme: {
-      accent: '#16a34a',
-      cardBg: 'linear-gradient(160deg, #ffffff 45%, #f0fdf4 100%)',
-      borderColor: '#cbf3d8',
-      hoverBorder: '#16a34a',
-      hoverShadow: '0 14px 32px rgba(22, 163, 74, 0.12)',
-      topBar: 'linear-gradient(90deg, #16a34a 0%, #4ade80 100%)',
-      iconGradient: 'linear-gradient(135deg, #4ade80 0%, #15803d 100%)',
-      iconShadow: '0 4px 12px rgba(22, 163, 74, 0.25)',
-      badgeBg: 'rgba(22, 163, 74, 0.1)',
-      badgeColor: '#15803d',
-      badgeBorder: 'rgba(22, 163, 74, 0.22)',
-      linkColor: '#15803d',
-    },
-  },
-  {
-    code: 'SEC-13',
-    name: 'Education & Academics',
-    desc: 'University trust audits, FCRA compliance, exemption advisory, and internal control.',
-    icon: 'landmark',
-    theme: {
-      accent: '#1e3a8a',
-      cardBg: 'linear-gradient(160deg, #ffffff 45%, #f0f4fd 100%)',
-      borderColor: '#cfdcfa',
-      hoverBorder: '#1e3a8a',
-      hoverShadow: '0 14px 32px rgba(30, 58, 138, 0.12)',
-      topBar: 'linear-gradient(90deg, #1e3a8a 0%, #3b82f6 100%)',
-      iconGradient: 'linear-gradient(135deg, #3b82f6 0%, #1e3a8a 100%)',
-      iconShadow: '0 4px 12px rgba(30, 58, 138, 0.25)',
-      badgeBg: 'rgba(30, 58, 138, 0.1)',
-      badgeColor: '#1e3a8a',
-      badgeBorder: 'rgba(30, 58, 138, 0.22)',
-      linkColor: '#1e3a8a',
-    },
-  },
-  {
-    code: 'SEC-14',
-    name: 'Start-ups & Scale-ups',
-    desc: 'VC/PE fundraising advisory, investor due diligence, cap table, and ESOP structuring.',
-    icon: 'rocket',
-    theme: {
-      accent: '#b08d57',
-      cardBg: 'linear-gradient(160deg, #ffffff 45%, #fdfaf4 100%)',
-      borderColor: '#eee3d2',
-      hoverBorder: '#b08d57',
-      hoverShadow: '0 14px 32px rgba(176, 141, 87, 0.14)',
-      topBar: 'linear-gradient(90deg, #b08d57 0%, #e5b358 100%)',
-      iconGradient: 'linear-gradient(135deg, #e5b358 0%, #b08d57 100%)',
-      iconShadow: '0 4px 12px rgba(176, 141, 87, 0.28)',
-      badgeBg: 'rgba(176, 141, 87, 0.12)',
-      badgeColor: '#967341',
-      badgeBorder: 'rgba(176, 141, 87, 0.25)',
-      linkColor: '#967341',
-    },
-  },
-  {
-    code: 'SEC-15',
-    name: 'MSMEs & Enterprise',
-    desc: 'Subsidies, bank loan syndication, virtual CFO, tax planning, and statutory audit.',
-    icon: 'briefcase',
-    theme: {
-      accent: '#1f3864',
-      cardBg: 'linear-gradient(160deg, #ffffff 45%, #f1f5fa 100%)',
-      borderColor: '#dbe4f0',
-      hoverBorder: '#1f3864',
-      hoverShadow: '0 14px 32px rgba(31, 56, 100, 0.12)',
-      topBar: 'linear-gradient(90deg, #1f3864 0%, #3b66ac 100%)',
-      iconGradient: 'linear-gradient(135deg, #2d508f 0%, #16294a 100%)',
-      iconShadow: '0 4px 12px rgba(31, 56, 100, 0.25)',
-      badgeBg: 'rgba(31, 56, 100, 0.08)',
-      badgeColor: '#1f3864',
-      badgeBorder: 'rgba(31, 56, 100, 0.18)',
-      linkColor: '#1f3864',
-    },
-  },
-  {
-    code: 'SEC-16',
-    name: 'Family-Owned Businesses',
-    desc: 'Family constitution, succession planning, trust settlement, and wealth preservation.',
-    icon: 'users',
-    theme: {
-      accent: '#b45309',
-      cardBg: 'linear-gradient(160deg, #ffffff 45%, #fcf7f1 100%)',
-      borderColor: '#f6e3c9',
-      hoverBorder: '#b45309',
-      hoverShadow: '0 14px 32px rgba(180, 83, 9, 0.12)',
-      topBar: 'linear-gradient(90deg, #b45309 0%, #fbbf24 100%)',
-      iconGradient: 'linear-gradient(135deg, #f59e0b 0%, #9a3412 100%)',
-      iconShadow: '0 4px 12px rgba(180, 83, 9, 0.25)',
-      badgeBg: 'rgba(180, 83, 9, 0.1)',
-      badgeColor: '#b45309',
-      badgeBorder: 'rgba(180, 83, 9, 0.22)',
-      linkColor: '#b45309',
-    },
-  },
-  {
-    code: 'SEC-17',
-    name: 'Trusts & Non-Profit Organisations',
-    desc: '12A/80G tax exemptions, FCRA filings, statutory trust audits, and governance.',
-    icon: 'heart',
-    theme: {
-      accent: '#059669',
-      cardBg: 'linear-gradient(160deg, #ffffff 45%, #f0fdf6 100%)',
-      borderColor: '#ccf2de',
-      hoverBorder: '#059669',
-      hoverShadow: '0 14px 32px rgba(5, 150, 105, 0.12)',
-      topBar: 'linear-gradient(90deg, #059669 0%, #34d399 100%)',
-      iconGradient: 'linear-gradient(135deg, #10b981 0%, #047857 100%)',
-      iconShadow: '0 4px 12px rgba(5, 150, 105, 0.25)',
-      badgeBg: 'rgba(5, 150, 105, 0.1)',
-      badgeColor: '#047857',
-      badgeBorder: 'rgba(5, 150, 105, 0.22)',
-      linkColor: '#047857',
-    },
-  },
+}
+
+const industries: Array<{
+  code: string
+  name: string
+  desc: string
+  icon: string
+  theme: IndustryThemeColor
+}> = [
+  { code: 'SEC-01', name: 'Manufacturing', desc: 'Costing, GST compliance, internal financial controls, inventory audit, and tax structuring.', icon: 'factory', theme: 'navy' },
+  { code: 'SEC-02', name: 'Banking & Financial Services', desc: 'Statutory bank audit, concurrent audit, regulatory compliance, and risk management.', icon: 'landmark', theme: 'gold' },
+  { code: 'SEC-03', name: 'NBFCs', desc: 'RBI regulatory compliance, statutory audit, asset classification, and corporate governance.', icon: 'trending', theme: 'teal' },
+  { code: 'SEC-04', name: 'Information Technology', desc: 'SEZ compliance, international taxation, transfer pricing, and IP structuring.', icon: 'cpu', theme: 'indigo' },
+  { code: 'SEC-05', name: 'Healthcare & Pharma', desc: 'Hospital accounting, regulatory compliance, GST advisory, and M&A due diligence.', icon: 'heart', theme: 'sky' },
+  { code: 'SEC-06', name: 'Infrastructure & Engineering', desc: 'Project financing, joint venture structuring, EPC taxation, and forensic reviews.', icon: 'building', theme: 'teal' },
+  { code: 'SEC-07', name: 'Real Estate & Construction', desc: 'RERA compliance, capital gains tax advisory, joint development agreement (JDA) tax.', icon: 'building', theme: 'bronze' },
+  { code: 'SEC-08', name: 'Hospitality & Tourism', desc: 'Operational audits, revenue assurance, lease transaction structuring, and tax filing.', icon: 'users', theme: 'amber' },
+  { code: 'SEC-09', name: 'Retail & Consumer Goods', desc: 'Supply chain GST, inventory audit, franchise structuring, and POS financial control.', icon: 'shopping', theme: 'azure' },
+  { code: 'SEC-10', name: 'E-Commerce & Digital Business', desc: 'TDS/TCS marketplace compliance, cross-border payments, and startup valuation.', icon: 'rocket', theme: 'purple' },
+  { code: 'SEC-11', name: 'Logistics & Transportation', desc: 'Fleet GST compliance, vehicle lease taxation, and multi-state tax structuring.', icon: 'truck', theme: 'sky' },
+  { code: 'SEC-12', name: 'Renewable Energy', desc: 'ESG reporting, subsidy compliance, project finance due diligence, and direct tax.', icon: 'leaf', theme: 'green' },
+  { code: 'SEC-13', name: 'Education & Academics', desc: 'University trust audits, FCRA compliance, exemption advisory, and internal control.', icon: 'landmark', theme: 'royal' },
+  { code: 'SEC-14', name: 'Start-ups & Scale-ups', desc: 'VC/PE fundraising advisory, investor due diligence, cap table, and ESOP structuring.', icon: 'rocket', theme: 'gold' },
+  { code: 'SEC-15', name: 'MSMEs & Enterprise', desc: 'Subsidies, bank loan syndication, virtual CFO, tax planning, and statutory audit.', icon: 'briefcase', theme: 'navy' },
+  { code: 'SEC-16', name: 'Family-Owned Businesses', desc: 'Family constitution, succession planning, trust settlement, and wealth preservation.', icon: 'users', theme: 'bronze' },
+  { code: 'SEC-17', name: 'Trusts & Non-Profit Organisations', desc: '12A/80G tax exemptions, FCRA filings, statutory trust audits, and governance.', icon: 'heart', theme: 'green' },
 ]
 
 export default function IndustriesPage() {
@@ -495,109 +341,112 @@ export default function IndustriesPage() {
           />
 
           <div className="industry-sectors-grid">
-            {industries.map((ind) => (
-              <div
-                key={ind.code}
-                id={ind.code.toLowerCase()}
-                className="industry-sector-card"
-                style={
-                  {
-                    '--card-bg': ind.theme.cardBg,
-                    '--card-border': ind.theme.borderColor,
-                    '--hover-border': ind.theme.hoverBorder,
-                    '--hover-shadow': ind.theme.hoverShadow,
-                    '--top-bar': ind.theme.topBar,
-                    scrollMarginTop: 90,
-                  } as React.CSSProperties
-                }
-              >
-                <div>
-                  {/* Card Header with Icon Badge and Sector Code */}
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16 }}>
-                    <div
-                      className="industry-sector-icon"
-                      style={{
-                        width: 44,
-                        height: 44,
-                        borderRadius: 10,
-                        background: ind.theme.iconGradient,
-                        border: '1.5px solid rgba(255, 255, 255, 0.85)',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        boxShadow: ind.theme.iconShadow,
-                        color: '#ffffff',
-                      }}
-                    >
-                      {renderSectorIcon(ind.icon)}
+            {industries.map((ind) => {
+              const theme = industryThemePresets[ind.theme]
+              return (
+                <div
+                  key={ind.code}
+                  id={ind.code.toLowerCase()}
+                  className="industry-sector-card"
+                  style={
+                    {
+                      '--card-bg': theme.cardBg,
+                      '--card-border': theme.borderColor,
+                      '--hover-border': theme.hoverBorder,
+                      '--hover-shadow': theme.hoverShadow,
+                      '--top-bar': theme.topBar,
+                      scrollMarginTop: 90,
+                    } as React.CSSProperties
+                  }
+                >
+                  <div>
+                    {/* Card Header with Icon Badge and Sector Code */}
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16 }}>
+                      <div
+                        className="industry-sector-icon"
+                        style={{
+                          width: 44,
+                          height: 44,
+                          borderRadius: 10,
+                          background: theme.iconGradient,
+                          border: '1.5px solid rgba(255, 255, 255, 0.85)',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          boxShadow: theme.iconShadow,
+                          color: '#ffffff',
+                        }}
+                      >
+                        {renderSectorIcon(ind.icon)}
+                      </div>
+                      <span
+                        style={{
+                          fontSize: 11,
+                          fontWeight: 700,
+                          color: theme.badgeColor,
+                          background: theme.badgeBg,
+                          border: `1px solid ${theme.badgeBorder}`,
+                          padding: '2.5px 8px',
+                          borderRadius: 4,
+                          letterSpacing: 0.6,
+                          textTransform: 'uppercase',
+                        }}
+                      >
+                        {ind.code}
+                      </span>
                     </div>
-                    <span
+
+                    {/* Title */}
+                    <h3
                       style={{
-                        fontSize: 11,
-                        fontWeight: 700,
-                        color: ind.theme.badgeColor,
-                        background: ind.theme.badgeBg,
-                        border: `1px solid ${ind.theme.badgeBorder}`,
-                        padding: '2.5px 8px',
-                        borderRadius: 4,
-                        letterSpacing: 0.6,
-                        textTransform: 'uppercase',
+                        fontSize: 17.5,
+                        fontWeight: 800,
+                        color: '#1f3864',
+                        margin: '0 0 8px',
+                        lineHeight: 1.3,
+                        letterSpacing: '-0.01em',
                       }}
                     >
-                      {ind.code}
-                    </span>
+                      {ind.name}
+                    </h3>
+
+                    {/* Description */}
+                    <p
+                      style={{
+                        fontSize: 13,
+                        color: '#526071',
+                        margin: 0,
+                        lineHeight: 1.55,
+                      }}
+                    >
+                      {ind.desc}
+                    </p>
                   </div>
 
-                  {/* Title */}
-                  <h3
+                  {/* Action Footer */}
+                  <div
                     style={{
-                      fontSize: 17.5,
-                      fontWeight: 800,
-                      color: '#1f3864',
-                      margin: '0 0 8px',
-                      lineHeight: 1.3,
-                      letterSpacing: '-0.01em',
+                      marginTop: 18,
+                      paddingTop: 12,
+                      borderTop: `1px dashed ${theme.borderColor}`,
+                      display: 'flex',
+                      justifyContent: 'flex-start',
                     }}
                   >
-                    {ind.name}
-                  </h3>
-
-                  {/* Description */}
-                  <p
-                    style={{
-                      fontSize: 13,
-                      color: '#526071',
-                      margin: 0,
-                      lineHeight: 1.55,
-                    }}
-                  >
-                    {ind.desc}
-                  </p>
+                    <a
+                      href={`/contact?sector=${encodeURIComponent(ind.name)}`}
+                      className="industry-sector-link"
+                      style={{
+                        color: theme.linkColor,
+                      }}
+                    >
+                      <span>Consult Industry Partner</span>
+                      <span className="industry-sector-arrow">→</span>
+                    </a>
+                  </div>
                 </div>
-
-                {/* Action Footer */}
-                <div
-                  style={{
-                    marginTop: 18,
-                    paddingTop: 12,
-                    borderTop: `1px dashed ${ind.theme.borderColor}`,
-                    display: 'flex',
-                    justifyContent: 'flex-start',
-                  }}
-                >
-                  <a
-                    href={`/contact?sector=${encodeURIComponent(ind.name)}`}
-                    className="industry-sector-link"
-                    style={{
-                      color: ind.theme.linkColor,
-                    }}
-                  >
-                    <span>Consult Industry Partner</span>
-                    <span className="industry-sector-arrow">→</span>
-                  </a>
-                </div>
-              </div>
-            ))}
+              )
+            })}
           </div>
 
           <CtaBanner
