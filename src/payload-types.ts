@@ -112,10 +112,12 @@ export interface Config {
   globals: {
     'site-settings': SiteSetting;
     'home-page': HomePage;
+    'consent-settings': ConsentSetting;
   };
   globalsSelect: {
     'site-settings': SiteSettingsSelect<false> | SiteSettingsSelect<true>;
     'home-page': HomePageSelect<false> | HomePageSelect<true>;
+    'consent-settings': ConsentSettingsSelect<false> | ConsentSettingsSelect<true>;
   };
   locale: null;
   widgets: {
@@ -444,6 +446,21 @@ export interface JobApplication {
         id?: string | null;
       }[]
     | null;
+  /**
+   * DPDP consent state.
+   */
+  consentStatus?: ('active' | 'withdrawn') | null;
+  withdrawnAt?: string | null;
+  consentGiven?: boolean | null;
+  consentAt?: string | null;
+  consentVersion?: string | null;
+  /**
+   * Immutable copy of the exact notice the candidate agreed to (Safeguard 1).
+   */
+  consentTextSnapshot?: string | null;
+  consentIp?: string | null;
+  consentUserAgent?: string | null;
+  withdrawalToken?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -922,6 +939,15 @@ export interface JobApplicationsSelect<T extends boolean = true> {
         author?: T;
         id?: T;
       };
+  consentStatus?: T;
+  withdrawnAt?: T;
+  consentGiven?: T;
+  consentAt?: T;
+  consentVersion?: T;
+  consentTextSnapshot?: T;
+  consentIp?: T;
+  consentUserAgent?: T;
+  withdrawalToken?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -1151,6 +1177,49 @@ export interface HomePage {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "consent-settings".
+ */
+export interface ConsentSetting {
+  id: number;
+  /**
+   * Legally significant — review before editing. Changes are version-tracked.
+   */
+  notice: {
+    /**
+     * Bump this whenever the wording below changes (e.g. v1 → v2).
+     */
+    version: string;
+    /**
+     * The itemised consent text shown beside the checkbox.
+     */
+    checkboxLabel: string;
+    /**
+     * Short security/privacy note shown below the checkbox.
+     */
+    reassuranceLine?: string | null;
+  };
+  grievanceOfficer?: {
+    name?: string | null;
+    email?: string | null;
+    phone?: string | null;
+  };
+  /**
+   * How long candidate application data is retained.
+   */
+  retentionPeriodMonths?: number | null;
+  withdrawalEmail?: {
+    subject?: string | null;
+    /**
+     * Placeholders: {{name}}, {{jobTitle}}, {{withdrawUrl}}. The withdrawal link is appended automatically if {{withdrawUrl}} is omitted.
+     */
+    body?: string | null;
+  };
+  privacyNotice?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "site-settings_select".
  */
 export interface SiteSettingsSelect<T extends boolean = true> {
@@ -1232,6 +1301,37 @@ export interface HomePageSelect<T extends boolean = true> {
               id?: T;
             };
       };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "consent-settings_select".
+ */
+export interface ConsentSettingsSelect<T extends boolean = true> {
+  notice?:
+    | T
+    | {
+        version?: T;
+        checkboxLabel?: T;
+        reassuranceLine?: T;
+      };
+  grievanceOfficer?:
+    | T
+    | {
+        name?: T;
+        email?: T;
+        phone?: T;
+      };
+  retentionPeriodMonths?: T;
+  withdrawalEmail?:
+    | T
+    | {
+        subject?: T;
+        body?: T;
+      };
+  privacyNotice?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

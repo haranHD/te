@@ -8,3 +8,7 @@ media
 *.tsbuildinfo
 next-env.d.ts
 .DS_Store
+
+# committed duplicates — do not re-add
+/TEAM_EYRIE/
+*.zip

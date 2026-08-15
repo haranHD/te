@@ -2,9 +2,20 @@
 
 import React, { useState } from 'react'
 
-export default function JobApplicationForm({ jobId, jobTitle }: { jobId: string | number; jobTitle: string }) {
+type Consent = { label: string; reassurance?: string; grievanceContact?: string }
+
+export default function JobApplicationForm({
+  jobId,
+  jobTitle,
+  consent,
+}: {
+  jobId: string | number
+  jobTitle: string
+  consent: Consent
+}) {
   const [status, setStatus] = useState<'idle' | 'sending' | 'ok' | 'error'>('idle')
   const [error, setError] = useState('')
+  const [agreed, setAgreed] = useState(false)
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -73,7 +84,43 @@ export default function JobApplicationForm({ jobId, jobTitle }: { jobId: string 
         <label htmlFor="coverLetter">Cover note</label>
         <textarea id="coverLetter" name="coverLetter" placeholder="Tell us why you’re a great fit (optional)" />
       </div>
-      <button type="submit" className="btn btn--primary" disabled={status === 'sending'}>
+
+      {/* DPDP consent — required, unticked by default, enforced again server-side */}
+      <div
+        style={{
+          border: '1px solid var(--line, #e6e9ef)',
+          borderRadius: 10,
+          padding: 16,
+          background: 'var(--bg-alt, #f5f7fa)',
+          margin: '4px 0 18px',
+        }}
+      >
+        <label style={{ display: 'flex', gap: 12, alignItems: 'flex-start', cursor: 'pointer', fontWeight: 400 }}>
+          <input
+            type="checkbox"
+            name="consent"
+            required
+            checked={agreed}
+            onChange={(e) => setAgreed(e.target.checked)}
+            style={{ marginTop: 4, width: 18, height: 18, flexShrink: 0 }}
+          />
+          <span style={{ fontSize: 14, lineHeight: 1.55, color: 'var(--ink, #222)' }}>
+            <strong>DPDP Consent:</strong> {consent.label}
+          </span>
+        </label>
+        {consent.grievanceContact && (
+          <p style={{ margin: '10px 0 0 30px', fontSize: 12.5, color: 'var(--muted, #5a6472)' }}>
+            Grievance Officer: {consent.grievanceContact}
+          </p>
+        )}
+        {consent.reassurance && (
+          <p style={{ margin: '8px 0 0 30px', fontSize: 12.5, color: 'var(--muted, #5a6472)' }}>
+            🔒 {consent.reassurance}
+          </p>
+        )}
+      </div>
+
+      <button type="submit" className="btn btn--primary" disabled={status === 'sending' || !agreed}>
         {status === 'sending' ? 'Submitting…' : 'Submit application'}
       </button>
     </form>

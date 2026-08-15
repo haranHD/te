@@ -64,6 +64,17 @@ curl http://localhost:4000/dev/seed
 - **Consent Logs** — append-only GDPR audit trail of cookie-consent events
 - **Global: Site Settings** — org info, contact, social, notification emails
 - **Global: Home Page** — hero, intro, stats counters, process model
+- **Global: Consent Settings** — DPDP consent notice (versioned), grievance officer, retention period, withdrawal-email template (admin-only, version history)
+
+## DPDP consent (job applications)
+Candidates give explicit **DPDP Act 2023** consent when applying, and can withdraw it later:
+- Un-ticked consent checkbox on the application form; **enforced server-side** in `/apply` (submission rejected without it).
+- The exact notice text + version is **snapshotted onto each application** (`consentTextSnapshot`) — immutable proof even if the notice is later edited (**Safeguard 1**). The notice is managed in the admin **Consent Settings** page, which keeps **version history** (**Safeguard 2**).
+- Consent proof stored on the application: `consentGiven`, `consentAt`, `consentVersion`, `consentIp`, `consentUserAgent`, `consentStatus`, `withdrawalToken`, `withdrawnAt`.
+- On submission the candidate is emailed an acknowledgement with a unique **withdrawal link** (`/careers/withdraw?token=…`). Confirming it marks the application `consentStatus: withdrawn` and removes it from the active pipeline (`POST /withdraw-consent`). Possession of the emailed token is the identity check.
+- Email is best-effort (console transport until an email adapter is configured — see Production notes).
+
+> Build note: the committed `TEAM_EYRIE/` duplicate tree is excluded in `tsconfig.json` because its stale generated types shadowed the real ones. That nested copy and `TEAM_EYRIE.zip` should be removed from the repo.
 
 ## Public pages (frontend)
 All under `src/app/(frontend)/`, server-rendered from the CMS:
@@ -104,7 +115,7 @@ server-side proof of consent.
 
 ## Production notes (in-house VPS)
 - Switch Postgres from dev `push` to **migrations**: `payload migrate:create` then `payload migrate` in the deploy pipeline.
-- Configure an **email adapter** (currently emails are written to the console).
+- **Email:** the nodemailer adapter is wired in `payload.config.ts`. Set `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS`, `EMAIL_FROM_ADDRESS`, `EMAIL_FROM_NAME` (see `.env`) to send real emails (e.g. the application withdrawal link). Without `SMTP_HOST`, emails are logged to the console.
 - Move media storage to disk/object storage and put the app behind a reverse proxy (Nginx) with HTTPS.
 - Set `NODE_ENV=production`; the `/dev/seed` route is disabled automatically.
 ```

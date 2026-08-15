@@ -76,6 +76,41 @@ export const JobApplications: CollectionConfig = {
         },
       ],
     },
+    // ---- DPDP consent (captured server-side by /apply) ----
+    {
+      name: 'consentStatus',
+      type: 'select',
+      defaultValue: 'active',
+      admin: { position: 'sidebar', description: 'DPDP consent state.', readOnly: true },
+      options: [
+        { label: 'Active', value: 'active' },
+        { label: 'Withdrawn', value: 'withdrawn' },
+      ],
+    },
+    { name: 'withdrawnAt', type: 'date', admin: { position: 'sidebar', readOnly: true } },
+    {
+      type: 'collapsible',
+      label: 'Consent record (DPDP)',
+      admin: { initCollapsed: true },
+      fields: [
+        { name: 'consentGiven', type: 'checkbox', defaultValue: false, admin: { readOnly: true } },
+        { name: 'consentAt', type: 'date', admin: { readOnly: true, date: { pickerAppearance: 'dayAndTime' } } },
+        { name: 'consentVersion', type: 'text', admin: { readOnly: true } },
+        {
+          name: 'consentTextSnapshot',
+          type: 'textarea',
+          admin: { readOnly: true, description: 'Immutable copy of the exact notice the candidate agreed to (Safeguard 1).' },
+        },
+        { name: 'consentIp', type: 'text', admin: { readOnly: true } },
+        { name: 'consentUserAgent', type: 'text', admin: { readOnly: true } },
+      ],
+    },
+    {
+      name: 'withdrawalToken',
+      type: 'text',
+      index: true,
+      admin: { hidden: true },
+    },
   ],
   hooks: {
     beforeChange: [
