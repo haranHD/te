@@ -24,6 +24,14 @@ import { HomePage } from './globals/HomePage'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
+const dbUrl =
+  process.env.DATABASE_URL ||
+  process.env.DATABASE_URI ||
+  process.env.POSTGRES_URL ||
+  ''
+
+const isLocalDb = !dbUrl || dbUrl.includes('127.0.0.1') || dbUrl.includes('localhost')
+
 export default buildConfig({
   admin: {
     user: Users.slug,
@@ -55,11 +63,8 @@ export default buildConfig({
   },
   db: postgresAdapter({
     pool: {
-      connectionString:
-        process.env.DATABASE_URL ||
-        process.env.DATABASE_URI ||
-        process.env.POSTGRES_URL ||
-        '',
+      connectionString: dbUrl,
+      ssl: isLocalDb ? false : { rejectUnauthorized: false },
     },
   }),
   sharp,
