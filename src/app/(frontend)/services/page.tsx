@@ -2,7 +2,6 @@ import React from 'react'
 import type { Metadata } from 'next'
 import PageHero from '../../../components/PageHero'
 import SectionHeader from '../../../components/SectionHeader'
-import CorporateCard from '../../../components/CorporateCard'
 import CtaBanner from '../../../components/CtaBanner'
 import CorporateIcon from '../../../components/CorporateIcon'
 
@@ -19,6 +18,25 @@ const serviceCategories = [
     title: 'Assurance & Audit',
     subtitle: 'Independent evaluation, financial transparency, and governance frameworks.',
     iconName: 'assurance',
+    theme: {
+      accent: '#1f3864',
+      accentDark: '#142442',
+      cardBg: 'linear-gradient(155deg, #ffffff 40%, #f0f4fa 100%)',
+      borderColor: '#dbe4f0',
+      hoverBorder: '#1f3864',
+      hoverShadow: '0 16px 36px rgba(31, 56, 100, 0.12)',
+      topBar: 'linear-gradient(90deg, #1f3864 0%, #3b66ac 100%)',
+      iconGradient: 'linear-gradient(135deg, #2d508f 0%, #16294a 100%)',
+      iconShadow: '0 6px 16px rgba(31, 56, 100, 0.28)',
+      badgeBg: 'rgba(31, 56, 100, 0.08)',
+      badgeColor: '#1f3864',
+      badgeBorder: 'rgba(31, 56, 100, 0.2)',
+      tagBg: '#f5f8fc',
+      tagBorder: '#dbe6f3',
+      tagHoverBorder: '#1f3864',
+      checkColor: '#1f3864',
+      linkColor: '#1f3864',
+    },
     items: [
       'Statutory Audit',
       'Internal Audit',
@@ -37,6 +55,25 @@ const serviceCategories = [
     title: 'Tax Advisory',
     subtitle: 'Strategic direct tax planning, dispute resolution, and cross-border structuring.',
     iconName: 'tax',
+    theme: {
+      accent: '#b08d57',
+      accentDark: '#8f6e3b',
+      cardBg: 'linear-gradient(155deg, #ffffff 40%, #fdfaf4 100%)',
+      borderColor: '#eee3d2',
+      hoverBorder: '#b08d57',
+      hoverShadow: '0 16px 36px rgba(176, 141, 87, 0.14)',
+      topBar: 'linear-gradient(90deg, #b08d57 0%, #e0b469 100%)',
+      iconGradient: 'linear-gradient(135deg, #e5b358 0%, #b08d57 100%)',
+      iconShadow: '0 6px 16px rgba(176, 141, 87, 0.32)',
+      badgeBg: 'rgba(176, 141, 87, 0.12)',
+      badgeColor: '#967341',
+      badgeBorder: 'rgba(176, 141, 87, 0.25)',
+      tagBg: '#fdfbf6',
+      tagBorder: '#f2e8d9',
+      tagHoverBorder: '#b08d57',
+      checkColor: '#b08d57',
+      linkColor: '#967341',
+    },
     items: [
       'Direct Tax Advisory',
       'Income Tax Litigation',
@@ -53,6 +90,25 @@ const serviceCategories = [
     title: 'GST & Indirect Taxes',
     subtitle: 'Complete indirect tax compliance, litigation support, and trade advisory.',
     iconName: 'gst',
+    theme: {
+      accent: '#0d9488',
+      accentDark: '#0f766e',
+      cardBg: 'linear-gradient(155deg, #ffffff 40%, #f0fdf9 100%)',
+      borderColor: '#cbf0e7',
+      hoverBorder: '#0d9488',
+      hoverShadow: '0 16px 36px rgba(13, 148, 136, 0.12)',
+      topBar: 'linear-gradient(90deg, #0d9488 0%, #2dd4bf 100%)',
+      iconGradient: 'linear-gradient(135deg, #14b8a6 0%, #0f766e 100%)',
+      iconShadow: '0 6px 16px rgba(13, 148, 136, 0.28)',
+      badgeBg: 'rgba(13, 148, 136, 0.1)',
+      badgeColor: '#0f766e',
+      badgeBorder: 'rgba(13, 148, 136, 0.22)',
+      tagBg: '#f0fbf8',
+      tagBorder: '#d2f2ea',
+      tagHoverBorder: '#0d9488',
+      checkColor: '#0d9488',
+      linkColor: '#0f766e',
+    },
     items: [
       'GST Advisory Services',
       'GST Compliance & Filing',
@@ -67,6 +123,25 @@ const serviceCategories = [
     title: 'Corporate & Regulatory Advisory',
     subtitle: 'End-to-end secretarial, SEBI, RBI, and corporate governance compliance.',
     iconName: 'corporate',
+    theme: {
+      accent: '#4f46e5',
+      accentDark: '#3730a3',
+      cardBg: 'linear-gradient(155deg, #ffffff 40%, #f4f5fe 100%)',
+      borderColor: '#dde1fc',
+      hoverBorder: '#4f46e5',
+      hoverShadow: '0 16px 36px rgba(79, 70, 229, 0.12)',
+      topBar: 'linear-gradient(90deg, #4f46e5 0%, #818cf8 100%)',
+      iconGradient: 'linear-gradient(135deg, #6366f1 0%, #4338ca 100%)',
+      iconShadow: '0 6px 16px rgba(79, 70, 229, 0.28)',
+      badgeBg: 'rgba(79, 70, 229, 0.1)',
+      badgeColor: '#4338ca',
+      badgeBorder: 'rgba(79, 70, 229, 0.22)',
+      tagBg: '#f6f7fe',
+      tagBorder: '#e2e6fb',
+      tagHoverBorder: '#4f46e5',
+      checkColor: '#4f46e5',
+      linkColor: '#4338ca',
+    },
     items: [
       'Company Law Advisory',
       'LLP Advisory & Formation',
@@ -83,6 +158,25 @@ const serviceCategories = [
     title: 'Business Consulting',
     subtitle: 'Financial strategy, virtual CFO services, and business performance improvement.',
     iconName: 'consulting',
+    theme: {
+      accent: '#0284c7',
+      accentDark: '#0369a1',
+      cardBg: 'linear-gradient(155deg, #ffffff 40%, #f0f7fc 100%)',
+      borderColor: '#cbe5f7',
+      hoverBorder: '#0284c7',
+      hoverShadow: '0 16px 36px rgba(2, 132, 199, 0.12)',
+      topBar: 'linear-gradient(90deg, #0284c7 0%, #38bdf8 100%)',
+      iconGradient: 'linear-gradient(135deg, #38bdf8 0%, #0369a1 100%)',
+      iconShadow: '0 6px 16px rgba(2, 132, 199, 0.28)',
+      badgeBg: 'rgba(2, 132, 199, 0.1)',
+      badgeColor: '#0369a1',
+      badgeBorder: 'rgba(2, 132, 199, 0.22)',
+      tagBg: '#f0f7fd',
+      tagBorder: '#d7ecfa',
+      tagHoverBorder: '#0284c7',
+      checkColor: '#0284c7',
+      linkColor: '#0369a1',
+    },
     items: [
       'Business Structuring',
       'Financial Modelling & Projection',
@@ -98,6 +192,25 @@ const serviceCategories = [
     title: 'Transaction Advisory',
     subtitle: 'Strategic support for capital raising, M&A, startup growth, and valuation.',
     iconName: 'transaction',
+    theme: {
+      accent: '#059669',
+      accentDark: '#047857',
+      cardBg: 'linear-gradient(155deg, #ffffff 40%, #f0fdf6 100%)',
+      borderColor: '#ccf2de',
+      hoverBorder: '#059669',
+      hoverShadow: '0 16px 36px rgba(5, 150, 105, 0.12)',
+      topBar: 'linear-gradient(90deg, #059669 0%, #34d399 100%)',
+      iconGradient: 'linear-gradient(135deg, #10b981 0%, #047857 100%)',
+      iconShadow: '0 6px 16px rgba(5, 150, 105, 0.28)',
+      badgeBg: 'rgba(5, 150, 105, 0.1)',
+      badgeColor: '#047857',
+      badgeBorder: 'rgba(5, 150, 105, 0.22)',
+      tagBg: '#f1fcf6',
+      tagBorder: '#d6f5e4',
+      tagHoverBorder: '#059669',
+      checkColor: '#059669',
+      linkColor: '#047857',
+    },
     items: [
       'Start-up Advisory',
       'Venture Capital Advisory',
@@ -114,6 +227,25 @@ const serviceCategories = [
     title: 'Family Business Advisory',
     subtitle: 'Preserving wealth, establishing family governance, and succession planning.',
     iconName: 'family',
+    theme: {
+      accent: '#b45309',
+      accentDark: '#92400e',
+      cardBg: 'linear-gradient(155deg, #ffffff 40%, #fcf7f1 100%)',
+      borderColor: '#f6e3c9',
+      hoverBorder: '#b45309',
+      hoverShadow: '0 16px 36px rgba(180, 83, 9, 0.12)',
+      topBar: 'linear-gradient(90deg, #b45309 0%, #fbbf24 100%)',
+      iconGradient: 'linear-gradient(135deg, #f59e0b 0%, #9a3412 100%)',
+      iconShadow: '0 6px 16px rgba(180, 83, 9, 0.28)',
+      badgeBg: 'rgba(180, 83, 9, 0.1)',
+      badgeColor: '#b45309',
+      badgeBorder: 'rgba(180, 83, 9, 0.22)',
+      tagBg: '#fdf8f2',
+      tagBorder: '#f8ebd9',
+      tagHoverBorder: '#b45309',
+      checkColor: '#b45309',
+      linkColor: '#b45309',
+    },
     items: [
       'Family Constitution Formulation',
       'Family Settlement Advisory',
@@ -129,6 +261,25 @@ const serviceCategories = [
     title: 'Global Business Services',
     subtitle: 'Navigating international tax, cross-border investments, and global expansion.',
     iconName: 'global',
+    theme: {
+      accent: '#2563eb',
+      accentDark: '#1d4ed8',
+      cardBg: 'linear-gradient(155deg, #ffffff 40%, #f1f6fd 100%)',
+      borderColor: '#d0e1fc',
+      hoverBorder: '#2563eb',
+      hoverShadow: '0 16px 36px rgba(37, 99, 235, 0.12)',
+      topBar: 'linear-gradient(90deg, #2563eb 0%, #60a5fa 100%)',
+      iconGradient: 'linear-gradient(135deg, #60a5fa 0%, #1d4ed8 100%)',
+      iconShadow: '0 6px 16px rgba(37, 99, 235, 0.28)',
+      badgeBg: 'rgba(37, 99, 235, 0.1)',
+      badgeColor: '#1d4ed8',
+      badgeBorder: 'rgba(37, 99, 235, 0.22)',
+      tagBg: '#f3f8fe',
+      tagBorder: '#dbe8fc',
+      tagHoverBorder: '#2563eb',
+      checkColor: '#2563eb',
+      linkColor: '#1d4ed8',
+    },
     items: [
       'Cross-Border Transactions',
       'International Business Structuring',
@@ -165,55 +316,49 @@ export default function ServicesPage() {
                 key={cat.id}
                 id={cat.id}
                 className="service-practice-card"
-                style={{ scrollMarginTop: 90 }}
+                style={
+                  {
+                    '--card-bg': cat.theme.cardBg,
+                    '--card-border': cat.theme.borderColor,
+                    '--hover-border': cat.theme.hoverBorder,
+                    '--hover-shadow': cat.theme.hoverShadow,
+                    '--top-bar': cat.theme.topBar,
+                    '--tag-hover-border': cat.theme.tagHoverBorder,
+                    scrollMarginTop: 90,
+                  } as React.CSSProperties
+                }
               >
                 <div>
                   {/* Card Header */}
                   <div style={{ display: 'flex', alignItems: 'flex-start', gap: 14, marginBottom: 14 }}>
                     <div
+                      className="service-practice-icon-box"
                       style={{
                         width: 48,
                         height: 48,
                         borderRadius: 12,
-                        background: 'linear-gradient(135deg, #e5b358 0%, #b08d57 100%)',
-                        border: '1.5px solid #ffffff',
+                        background: cat.theme.iconGradient,
+                        border: '1.5px solid rgba(255, 255, 255, 0.8)',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
                         flexShrink: 0,
-                        boxShadow: '0 6px 16px rgba(176, 141, 87, 0.35)',
+                        boxShadow: cat.theme.iconShadow,
                       }}
                     >
                       <CorporateIcon name={cat.iconName} size={24} color="#ffffff" strokeWidth={2.4} />
                     </div>
                     <div style={{ flex: 1 }}>
-                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8, marginBottom: 2 }}>
-                        <h3 style={{ fontSize: 18.5, color: '#1f3864', margin: 0, fontWeight: 800 }}>
-                          {cat.title}
-                        </h3>
-                        <span
-                          style={{
-                            fontSize: 11,
-                            fontWeight: 700,
-                            color: '#b08d57',
-                            background: 'rgba(176, 141, 87, 0.1)',
-                            padding: '2px 7px',
-                            borderRadius: 4,
-                            textTransform: 'uppercase',
-                            letterSpacing: 0.5,
-                            flexShrink: 0,
-                          }}
-                        >
-                          {cat.num}
-                        </span>
-                      </div>
-                      <p style={{ color: '#64748b', fontSize: 13.5, margin: 0, lineHeight: 1.5 }}>
+                      <h3 style={{ fontSize: 19, color: '#1f3864', margin: '0 0 3px', fontWeight: 800, letterSpacing: '-0.01em' }}>
+                        {cat.title}
+                      </h3>
+                      <p style={{ color: '#526071', fontSize: 13.5, margin: 0, lineHeight: 1.5 }}>
                         {cat.subtitle}
                       </p>
                     </div>
                   </div>
 
-                  <hr style={{ border: 'none', borderTop: '1px solid #e2e8f0', margin: '0 0 14px' }} />
+                  <hr style={{ border: 'none', borderTop: `1px solid ${cat.theme.borderColor}`, margin: '0 0 14px', opacity: 0.85 }} />
 
                   {/* Capabilities Sub-items Grid */}
                   <div
@@ -226,21 +371,13 @@ export default function ServicesPage() {
                     {cat.items.map((item) => (
                       <div
                         key={item}
+                        className="service-practice-tag"
                         style={{
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: 7,
-                          background: '#f8fafc',
-                          border: '1px solid #e2e8f0',
-                          padding: '7px 11px',
-                          borderRadius: 6,
-                          fontSize: 13,
-                          fontWeight: 600,
-                          color: '#1e293b',
-                          transition: 'background 0.2s ease, border-color 0.2s ease',
+                          background: cat.theme.tagBg,
+                          border: `1px solid ${cat.theme.tagBorder}`,
                         }}
                       >
-                        <CorporateIcon name="check" size={13} color="#b08d57" strokeWidth={2.8} />
+                        <CorporateIcon name="check" size={13} color={cat.theme.checkColor} strokeWidth={2.8} />
                         <span style={{ whiteSpace: 'normal', lineHeight: 1.3 }}>{item}</span>
                       </div>
                     ))}
@@ -248,22 +385,16 @@ export default function ServicesPage() {
                 </div>
 
                 {/* Card Action Link */}
-                <div style={{ marginTop: 18, paddingTop: 12, borderTop: '1px dashed #e2e8f0', display: 'flex', justifyContent: 'flex-end' }}>
+                <div style={{ marginTop: 18, paddingTop: 13, borderTop: `1px dashed ${cat.theme.borderColor}`, display: 'flex', justifyContent: 'flex-end' }}>
                   <a
                     href={`/contact?service=${encodeURIComponent(cat.title)}`}
+                    className="service-practice-link"
                     style={{
-                      color: '#b08d57',
-                      fontSize: 13,
-                      fontWeight: 700,
-                      textDecoration: 'none',
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: 5,
-                      transition: 'color 0.2s ease',
+                      color: cat.theme.linkColor,
                     }}
                   >
                     <span>Engage {cat.title} Practice</span>
-                    <span>→</span>
+                    <span className="service-practice-arrow">→</span>
                   </a>
                 </div>
               </div>
