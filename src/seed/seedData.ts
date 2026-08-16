@@ -225,5 +225,31 @@ export async function runSeed(payload: Payload) {
     log.push('Case studies already exist — skipped')
   }
 
+  // DPDP Consent Settings (initial values; admin can edit thereafter)
+  await payload.updateGlobal({
+    slug: 'consent-settings',
+    data: {
+      notice: {
+        version: 'v1',
+        checkboxLabel:
+          'I explicitly consent to Team Eyrie storing and processing my personal data — including my name, email address, phone number and uploaded résumé — in its secure candidate database for the purpose of evaluating my job application, under the Digital Personal Data Protection (DPDP) Act, 2023. I understand that I may withdraw this consent and request deletion of my data at any time using the link in my application acknowledgement email, or by contacting Team Eyrie’s Grievance Officer. I understand that withdrawing consent will mean my application is no longer considered.',
+        reassuranceLine:
+          'Your application details are transmitted over a secure, encrypted (HTTPS/TLS) connection and are not shared with third parties for marketing.',
+      },
+      grievanceOfficer: {
+        name: 'Grievance Officer',
+        email: 'grievance@teameyrie.in',
+        phone: '',
+      },
+      retentionPeriodMonths: 12,
+      withdrawalEmail: {
+        subject: 'Your application to Team Eyrie',
+        body:
+          'Dear {{name}},\n\nThank you for applying for {{jobTitle}} at Team Eyrie. We have received your application.\n\nUnder the DPDP Act, 2023 you may withdraw your consent and have your application removed at any time using this link:\n{{withdrawUrl}}\n\nRegards,\nTeam Eyrie',
+      },
+    },
+  })
+  log.push('Updated consent settings')
+
   return log
 }

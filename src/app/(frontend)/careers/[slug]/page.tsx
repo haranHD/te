@@ -6,6 +6,7 @@ import config from '@payload-config'
 import PageHero from '../../../../components/PageHero'
 import RichText from '../../../../components/RichText'
 import JobApplicationForm from '../../../../components/JobApplicationForm'
+import { getConsentNotice } from '../../../../lib/consent'
 
 export const dynamic = 'force-dynamic'
 
@@ -37,6 +38,9 @@ export default async function JobDetail({ params }: { params: Promise<{ slug: st
   const { slug } = await params
   const job = await getJob(slug)
   if (!job) notFound()
+
+  const payload = await getPayload({ config })
+  const notice = await getConsentNotice(payload)
 
   const isOpen = job.status === 'open'
   const locations = Array.isArray(job.location)
@@ -119,7 +123,15 @@ export default async function JobDetail({ params }: { params: Promise<{ slug: st
               </h3>
               {isOpen ? (
                 <div style={{ marginTop: 8 }}>
-                  <JobApplicationForm jobId={job.id} jobTitle={job.title} />
+                  <JobApplicationForm
+                    jobId={job.id}
+                    jobTitle={job.title}
+                    consent={{
+                      label: notice.checkboxLabel,
+                      reassurance: notice.reassuranceLine,
+                      grievanceContact: notice.grievanceContact,
+                    }}
+                  />
                 </div>
               ) : (
                 <p style={{ color: '#64748b', fontSize: 15 }}>

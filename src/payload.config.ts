@@ -1,5 +1,6 @@
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import { nodemailerAdapter } from '@payloadcms/email-nodemailer'
 import path from 'path'
 import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
@@ -20,6 +21,7 @@ import { CaseStudies } from './collections/CaseStudies'
 import { ConsentLogs } from './collections/ConsentLogs'
 import { SiteSettings } from './globals/SiteSettings'
 import { HomePage } from './globals/HomePage'
+import { ConsentSettings } from './globals/ConsentSettings'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -67,8 +69,25 @@ export default buildConfig({
     CaseStudies,
     ConsentLogs,
   ],
-  globals: [SiteSettings, HomePage],
+  globals: [SiteSettings, HomePage, ConsentSettings],
   editor: lexicalEditor(),
+  // Real email is sent when SMTP_* env vars are present; otherwise Payload falls
+  // back to its console transport (emails are logged, not delivered).
+  email: process.env.SMTP_HOST
+    ? nodemailerAdapter({
+        defaultFromAddress: process.env.EMAIL_FROM_ADDRESS || 'no-reply@teameyrie.in',
+        defaultFromName: process.env.EMAIL_FROM_NAME || 'Team Eyrie',
+        transportOptions: {
+          host: process.env.SMTP_HOST,
+          port: Number(process.env.SMTP_PORT || 587),
+          secure: process.env.SMTP_SECURE === 'true',
+          auth:
+            process.env.SMTP_USER && process.env.SMTP_PASS
+              ? { user: process.env.SMTP_USER, pass: process.env.SMTP_PASS }
+              : undefined,
+        },
+      })
+    : undefined,
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
