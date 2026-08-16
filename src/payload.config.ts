@@ -34,6 +34,18 @@ const dbUrl =
 
 const isLocalDb = !dbUrl || dbUrl.includes('127.0.0.1') || dbUrl.includes('localhost')
 
+if (dbUrl) {
+  try {
+    const sanitized = dbUrl.replace(/^postgres(ql)?:/, 'http:')
+    const parsed = new URL(sanitized)
+    console.log(`[Payload DB] Connecting to database host: ${parsed.hostname}`)
+  } catch {
+    console.log('[Payload DB] Connecting with provided connection string.')
+  }
+} else {
+  console.warn('[Payload DB] ⚠️ WARNING: No DATABASE_URL found in environment variables! Falling back to localhost:5432.')
+}
+
 export default buildConfig({
   admin: {
     user: Users.slug,
