@@ -405,7 +405,7 @@ export default function IndiaNetworkMap() {
                 // Alignment: Western nodes & Bengaluru to left, eastern nodes to right
                 const isLeftLabel = c.city === 'Mumbai' || c.city === 'Goa' || c.city === 'Mysuru' || c.city === 'Bengaluru'
 
-                const labelX = c.x + (isLeftLabel ? -14 : 14)
+                const labelX = c.x + (isLeftLabel ? -16 : 16)
                 const labelY = c.y - (isHub ? 12 : 10)
 
                 return (
@@ -415,19 +415,36 @@ export default function IndiaNetworkMap() {
                       setActiveCity(c)
                       setHoveredCity(null)
                     }}
-                    onMouseEnter={() => setHoveredCity(c)}
+                    onMouseEnter={() => {
+                      setHoveredCity(c)
+                      setActiveCity(c)
+                    }}
                     onMouseLeave={() => setHoveredCity(null)}
-                    style={{ cursor: 'pointer' }}
+                    style={{ cursor: 'pointer', pointerEvents: 'all' }}
                   >
-                    {/* Generous Click/Hover Hitbox centered on pin */}
-                    <circle cx={c.x} cy={c.y - 12} r={22} fill="transparent" />
+                    {/* Generous Click/Hover Hitbox covering both pin and label area */}
+                    <circle
+                      cx={c.x}
+                      cy={c.y - 12}
+                      r={28}
+                      fill="rgba(255, 255, 255, 0.001)"
+                      style={{ pointerEvents: 'all' }}
+                    />
+                    <rect
+                      x={isLeftLabel ? c.x - 90 : c.x}
+                      y={c.y - 26}
+                      width={95}
+                      height={32}
+                      fill="rgba(255, 255, 255, 0.001)"
+                      style={{ pointerEvents: 'all' }}
+                    />
 
                     {/* Ground Radar Pulse on Selection/Hover */}
                     {isHighlighted && (
                       <circle
                         cx={c.x}
                         cy={c.y}
-                        r="4"
+                        r="5"
                         fill="none"
                         stroke={isHub ? '#10b981' : isHovered ? '#b08d57' : '#1f3864'}
                         className="node-pulse-active"
@@ -444,14 +461,14 @@ export default function IndiaNetworkMap() {
                       {/* Pin geometry pointing directly down to (0,0) */}
                       <g
                         style={{
-                          transform: isHighlighted ? 'scale(1.2)' : 'scale(1)',
+                          transform: isHighlighted ? 'scale(1.28)' : 'scale(1)',
                           transformOrigin: '0px 0px',
                           transition: 'transform 0.22s cubic-bezier(0.2, 0.8, 0.4, 1), filter 0.2s ease',
                           filter: isHovered
-                            ? 'drop-shadow(0 4px 8px rgba(176, 141, 87, 0.45))'
+                            ? 'drop-shadow(0 6px 12px rgba(176, 141, 87, 0.6))'
                             : isSelected
-                            ? 'drop-shadow(0 3px 6px rgba(31, 56, 100, 0.35))'
-                            : 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15))',
+                            ? 'drop-shadow(0 4px 8px rgba(31, 56, 100, 0.45))'
+                            : 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2))',
                         }}
                       >
                         {/* Pin body */}
@@ -471,7 +488,7 @@ export default function IndiaNetworkMap() {
                               : '#1f3864'
                           }
                           stroke="#ffffff"
-                          strokeWidth={isHub ? 1.8 : 1.5}
+                          strokeWidth={isHub ? 2 : 1.6}
                         />
                         {/* Center Dot */}
                         <circle
@@ -495,15 +512,15 @@ export default function IndiaNetworkMap() {
                       x={labelX}
                       y={labelY}
                       textAnchor={isLeftLabel ? 'end' : 'start'}
-                      fill={isHighlighted ? '#1f3864' : '#334155'}
-                      fontSize={isHub ? '15.5' : isHighlighted ? '14.5' : '13.5'}
+                      fill={isHighlighted ? (isHub ? '#047857' : isHovered ? '#b08d57' : '#1f3864') : '#1e293b'}
+                      fontSize={isHub ? '16' : isHighlighted ? '15' : '13.5'}
                       fontWeight={isHighlighted || isHub ? '800' : '700'}
                       letterSpacing="0.2px"
                       style={{
-                        pointerEvents: 'none',
+                        pointerEvents: 'all',
                         paintOrder: 'stroke fill',
                         stroke: '#ffffff',
-                        strokeWidth: '4px',
+                        strokeWidth: '4.5px',
                         strokeLinejoin: 'round',
                         strokeLinecap: 'round',
                         transition: 'all 0.2s ease',

@@ -35,6 +35,28 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Lenis Smooth Inertia Scroll (Studio Aesthetic, matching Desilo.studio) */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
 a {
   color: var(--navy);
   text-decoration: none;
@@ -689,13 +711,13 @@ a.card:hover {
 /* ---- Hero Banner with Image Backgrounds & Half-Dark to Light Transition ---- */
 .hero-section {
   position: relative;
-  min-height: calc(100vh - 40px);
+  min-height: calc(100vh - 116px);
   display: flex;
   flex-direction: column;
   justify-content: center;
   overflow: hidden;
   background: #0b1324;
-  padding: 44px 0 32px;
+  padding: 32px 0 24px;
 }
 
 .hero-section__bg-wrapper {
@@ -776,8 +798,8 @@ a.card:hover {
   flex-direction: column;
   justify-content: center;
   width: 100%;
-  gap: 28px;
-  padding: 10px 0;
+  gap: 20px;
+  padding: 0;
 }
 
 .hero-section__main-row {
@@ -806,7 +828,7 @@ a.card:hover {
   -webkit-backdrop-filter: none;
   border: none;
   border-radius: 0;
-  padding: 10px 0;
+  padding: 0;
   box-shadow: none;
   color: #ffffff;
   max-width: 680px;
@@ -819,14 +841,14 @@ a.card:hover {
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  margin-bottom: 16px;
+  margin-bottom: 10px;
 }
 
 .hero-glass-card__eyebrow {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-size: 12px;
+  font-size: 11.5px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 2px;
@@ -864,23 +886,23 @@ a.card:hover {
   align-items: center;
   gap: 10px;
   flex-wrap: wrap;
-  margin-bottom: 14px;
+  margin-bottom: 10px;
 }
 
 .hero-glass-card__badge {
   background: rgba(176, 141, 87, 0.22);
   border: 1px solid rgba(216, 193, 154, 0.38);
   color: #f1dfc3;
-  font-size: 11.5px;
+  font-size: 11px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1.2px;
-  padding: 4px 12px;
+  padding: 3px 11px;
   border-radius: 20px;
 }
 
 .hero-glass-card__brand-pill {
-  font-size: 11px;
+  font-size: 10.5px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1.5px;
@@ -888,36 +910,36 @@ a.card:hover {
 }
 
 .hero-glass-card__title {
-  font-size: clamp(32px, 3.4vw, 46px);
+  font-size: clamp(26px, 2.5vw, 36px);
   font-weight: 800;
   color: #ffffff;
-  line-height: 1.16;
-  margin: 0 0 12px;
+  line-height: 1.2;
+  margin: 0 0 10px;
   letter-spacing: 0.2px;
   text-shadow: 0 2px 12px rgba(0, 0, 0, 0.45);
 }
 
 .hero-glass-card__tagline {
-  font-size: clamp(16.5px, 1.4vw, 20px);
+  font-size: clamp(14.5px, 1.15vw, 17px);
   font-weight: 700;
   color: #d8c19a;
-  margin: 0 0 14px;
-  line-height: 1.45;
+  margin: 0 0 10px;
+  line-height: 1.4;
   text-shadow: 0 1px 6px rgba(0, 0, 0, 0.35);
 }
 
 .hero-glass-card__desc {
-  font-size: 16.5px;
+  font-size: 14px;
   color: #e2e8f0;
-  line-height: 1.7;
-  margin: 0 0 26px;
+  line-height: 1.6;
+  margin: 0 0 18px;
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
 }
 
 .hero-glass-card__actions {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
   flex-wrap: wrap;
   margin-bottom: 0;
 }
@@ -927,10 +949,10 @@ a.card:hover {
   align-items: center;
   gap: 8px;
   justify-content: center;
-  padding: 12px 24px;
+  padding: 10px 20px;
   border-radius: 8px;
   font-weight: 600;
-  font-size: 14.5px;
+  font-size: 13.5px;
   text-decoration: none;
   transition: all 0.2s ease;
   cursor: pointer;
@@ -1056,8 +1078,10 @@ a.card:hover {
   z-index: 6;
   width: 100%;
   margin-top: 0;
-  padding-top: 22px;
+  padding-top: 12px;
+  padding-bottom: 2px;
   border-top: 1px solid rgba(216, 193, 154, 0.35);
+  flex-shrink: 0;
 }
 
 .hero-alliance-bar__inner {
@@ -1079,7 +1103,7 @@ a.card:hover {
 }
 
 .hero-alliance-bar__tag {
-  font-size: 13px;
+  font-size: 11.5px;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 2px;
@@ -1087,7 +1111,7 @@ a.card:hover {
 }
 
 .hero-alliance-bar__title {
-  font-size: 18.5px;
+  font-size: 16px;
   font-weight: 800;
   color: #ffffff;
   line-height: 1.35;
@@ -1097,42 +1121,42 @@ a.card:hover {
 .hero-alliance-bar__text-list {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 36px;
+  gap: 32px;
   flex: 1;
 }
 
 .hero-alliance-text-item {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 4px;
 }
 
 .hero-alliance-text-item__name {
   color: #ffffff;
-  font-size: 21px;
+  font-size: 18px;
   font-weight: 800;
   line-height: 1.2;
   letter-spacing: 0.3px;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 9px;
 }
 
 .hero-alliance-text-item__bullet {
-  width: 9px;
-  height: 9px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   background: #e5b358;
-  box-shadow: 0 0 12px #e5b358;
+  box-shadow: 0 0 10px #e5b358;
   flex-shrink: 0;
 }
 
 .hero-alliance-text-item__role {
   color: #cbd5e1;
-  font-size: 15px;
+  font-size: 13.5px;
   font-weight: 500;
   line-height: 1.45;
-  padding-left: 19px;
+  padding-left: 17px;
 }
 
 .hero-alliance-text-item__dot {
@@ -1159,13 +1183,13 @@ a.card:hover {
   }
 }
 
-/* Pillar Hover Card with clearly visible background photos */
+/* Pillar Hover Card with clearly visible background photos & high contrast readability */
 .pillar-hover-card {
   position: relative;
   overflow: hidden;
-  border-radius: 12px;
-  padding: 22px 20px;
-  min-height: 220px;
+  border-radius: 14px;
+  padding: 24px 22px;
+  min-height: 230px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -1173,22 +1197,22 @@ a.card:hover {
   color: #ffffff;
   background-size: cover;
   background-position: center;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.10);
-  border: 1.5px solid rgba(216, 193, 154, 0.5);
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  box-shadow: 0 10px 28px rgba(15, 28, 51, 0.16);
+  border: 1.5px solid rgba(216, 193, 154, 0.55);
+  transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.4, 1), box-shadow 0.28s ease, border-color 0.28s ease;
 }
 
 .pillar-hover-card::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(15, 28, 51, 0.25) 0%, rgba(15, 28, 51, 0.78) 100%);
+  background: linear-gradient(180deg, rgba(11, 19, 36, 0.76) 0%, rgba(15, 28, 51, 0.88) 100%);
   transition: background 0.35s ease;
   z-index: 1;
 }
 
 .pillar-hover-card:hover::before {
-  background: linear-gradient(180deg, rgba(15, 28, 51, 0.12) 0%, rgba(15, 28, 51, 0.65) 100%);
+  background: linear-gradient(180deg, rgba(11, 19, 36, 0.65) 0%, rgba(15, 28, 51, 0.82) 100%);
 }
 
 .pillar-hover-card > * {
@@ -1197,9 +1221,9 @@ a.card:hover {
 }
 
 .pillar-hover-card:hover {
-  transform: translateY(-3px);
-  border-color: #b08d57;
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+  transform: translateY(-5px);
+  border-color: #d8c19a;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.3), 0 0 20px rgba(176, 141, 87, 0.3);
 }
 
 /* 4-column dynamic grid for Practice Area cards */
@@ -1584,6 +1608,17 @@ a.card:hover {
 }
 
 @media (max-width: 1024px) {
+  .hero-section {
+    height: auto;
+    min-height: auto;
+    padding: 36px 0 24px;
+  }
+
+  .hero-section__container {
+    height: auto;
+    gap: 24px;
+  }
+
   .hero-glass-card {
     max-width: 100%;
   }
@@ -1591,13 +1626,14 @@ a.card:hover {
 
 @media (max-width: 640px) {
   .hero-section {
-    padding: 36px 0;
+    padding: 32px 0 20px;
+    height: auto;
     min-height: auto;
   }
 
   .hero-glass-card {
-    padding: 20px 16px;
-    border-radius: 12px;
+    padding: 16px 0;
+    border-radius: 0;
   }
 
   .hero-glass-card__title {

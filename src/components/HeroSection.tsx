@@ -117,7 +117,6 @@ export default function HeroSection({
   // Enforce max 4 slides rule: exactly / up to 4 slides allowed
   const activeSlides = (slides && slides.length > 0 ? slides : defaultHeroSlides).slice(0, MAX_HERO_SLIDES)
   const [activeIndex, setActiveIndex] = useState(0)
-  const [isPaused, setIsPaused] = useState(false)
   const [touchStartX, setTouchStartX] = useState<number | null>(null)
 
   const slideCount = activeSlides.length
@@ -134,14 +133,14 @@ export default function HeroSection({
     setActiveIndex(idx)
   }
 
-  // Auto-play interval with pause on hover (slow, calm pace for effortless reading)
+  // Automatic continuous background image rotation based on timer (does not stop on hover)
   useEffect(() => {
-    if (isPaused) return
+    if (slideCount <= 1) return
     const timer = setInterval(() => {
-      nextSlide()
-    }, 8000)
+      setActiveIndex((prev) => (prev + 1) % slideCount)
+    }, 6000)
     return () => clearInterval(timer)
-  }, [isPaused, activeIndex, slideCount])
+  }, [activeIndex, slideCount])
 
   // Touch swipe support for mobile
   const handleTouchStart = (e: React.TouchEvent) => {
@@ -165,8 +164,6 @@ export default function HeroSection({
   return (
     <section
       className="hero-section"
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
       aria-label="Featured Capabilities Carousel"

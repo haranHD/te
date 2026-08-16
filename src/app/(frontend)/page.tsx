@@ -373,14 +373,19 @@ export default async function HomePage() {
               style={{ backgroundImage: "url('/images/Aboutus.png')" }}
             >
               <div>
-                <h3 style={{ fontSize: 20, color: '#ffffff', margin: '0 0 6px', fontWeight: 800, textShadow: '0 2px 8px rgba(0,0,0,0.5)' }}>
+                <div style={{ display: 'inline-flex', alignItems: 'center', gap: 6, background: 'rgba(176, 141, 87, 0.25)', border: '1px solid rgba(216, 193, 154, 0.45)', padding: '3px 9px', borderRadius: 4, color: '#d8c19a', fontSize: 11, fontWeight: 800, letterSpacing: 0.8, textTransform: 'uppercase', marginBottom: 10 }}>
+                  <span>01</span>
+                  <span>•</span>
+                  <span>Strategic Alliance</span>
+                </div>
+                <h3 style={{ fontSize: 21, color: '#ffffff', margin: '0 0 8px', fontWeight: 800, letterSpacing: '-0.01em', textShadow: '0 2px 10px rgba(0,0,0,0.85)' }}>
                   Network Profile
                 </h3>
-                <p style={{ color: '#f1f5f9', fontSize: 13.5, margin: 0, lineHeight: 1.5, textShadow: '0 1px 4px rgba(0,0,0,0.5)' }}>
+                <p style={{ color: '#f8fafc', fontSize: 13.5, margin: 0, lineHeight: 1.55, fontWeight: 500, textShadow: '0 1px 6px rgba(0,0,0,0.8)' }}>
                   Alliance of 3 reputed CA firms with 20+ senior professionals across India.
                 </p>
               </div>
-              <div style={{ color: '#f8fafc', fontSize: 13.5, fontWeight: 700, display: 'flex', alignItems: 'center', gap: 6, marginTop: 14 }}>
+              <div style={{ color: '#ffffff', fontSize: 13, fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: 6, marginTop: 18, background: 'rgba(176, 141, 87, 0.3)', border: '1px solid rgba(216, 193, 154, 0.55)', padding: '6px 14px', borderRadius: 6, width: 'fit-content' }}>
                 <span>Learn About Us</span>
                 <span>→</span>
               </div>
@@ -393,14 +398,19 @@ export default async function HomePage() {
               style={{ backgroundImage: "url('/images/services.png')" }}
             >
               <div>
-                <h3 style={{ fontSize: 20, color: '#ffffff', margin: '0 0 6px', fontWeight: 800, textShadow: '0 2px 8px rgba(0,0,0,0.5)' }}>
+                <div style={{ display: 'inline-flex', alignItems: 'center', gap: 6, background: 'rgba(176, 141, 87, 0.25)', border: '1px solid rgba(216, 193, 154, 0.45)', padding: '3px 9px', borderRadius: 4, color: '#d8c19a', fontSize: 11, fontWeight: 800, letterSpacing: 0.8, textTransform: 'uppercase', marginBottom: 10 }}>
+                  <span>02</span>
+                  <span>•</span>
+                  <span>Integrated Practice</span>
+                </div>
+                <h3 style={{ fontSize: 21, color: '#ffffff', margin: '0 0 8px', fontWeight: 800, letterSpacing: '-0.01em', textShadow: '0 2px 10px rgba(0,0,0,0.85)' }}>
                   Practice Areas
                 </h3>
-                <p style={{ color: '#f1f5f9', fontSize: 13.5, margin: 0, lineHeight: 1.5, textShadow: '0 1px 4px rgba(0,0,0,0.5)' }}>
+                <p style={{ color: '#f8fafc', fontSize: 13.5, margin: 0, lineHeight: 1.55, fontWeight: 500, textShadow: '0 1px 6px rgba(0,0,0,0.8)' }}>
                   Assurance, Tax, GST, Corporate Compliance, M&A & Global Advisory.
                 </p>
               </div>
-              <div style={{ color: '#f8fafc', fontSize: 13.5, fontWeight: 700, display: 'flex', alignItems: 'center', gap: 6, marginTop: 14 }}>
+              <div style={{ color: '#ffffff', fontSize: 13, fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: 6, marginTop: 18, background: 'rgba(176, 141, 87, 0.3)', border: '1px solid rgba(216, 193, 154, 0.55)', padding: '6px 14px', borderRadius: 6, width: 'fit-content' }}>
                 <span>View All Practice Areas</span>
                 <span>→</span>
               </div>
@@ -413,14 +423,19 @@ export default async function HomePage() {
               style={{ backgroundImage: "url('/images/Why.png')" }}
             >
               <div>
-                <h3 style={{ fontSize: 20, color: '#ffffff', margin: '0 0 6px', fontWeight: 800, textShadow: '0 2px 8px rgba(0,0,0,0.5)' }}>
+                <div style={{ display: 'inline-flex', alignItems: 'center', gap: 6, background: 'rgba(176, 141, 87, 0.25)', border: '1px solid rgba(216, 193, 154, 0.45)', padding: '3px 9px', borderRadius: 4, color: '#d8c19a', fontSize: 11, fontWeight: 800, letterSpacing: 0.8, textTransform: 'uppercase', marginBottom: 10 }}>
+                  <span>03</span>
+                  <span>•</span>
+                  <span>Core Advantages</span>
+                </div>
+                <h3 style={{ fontSize: 21, color: '#ffffff', margin: '0 0 8px', fontWeight: 800, letterSpacing: '-0.01em', textShadow: '0 2px 10px rgba(0,0,0,0.85)' }}>
                   The Eyrie Advantage
                 </h3>
-                <p style={{ color: '#f1f5f9', fontSize: 13.5, margin: 0, lineHeight: 1.5, textShadow: '0 1px 4px rgba(0,0,0,0.5)' }}>
+                <p style={{ color: '#f8fafc', fontSize: 13.5, margin: 0, lineHeight: 1.55, fontWeight: 500, textShadow: '0 1px 6px rgba(0,0,0,0.8)' }}>
                   6 core pillars of multidisciplinary expertise, national reach & technology.
                 </p>
               </div>
-              <div style={{ color: '#f8fafc', fontSize: 13.5, fontWeight: 700, display: 'flex', alignItems: 'center', gap: 6, marginTop: 14 }}>
+              <div style={{ color: '#ffffff', fontSize: 13, fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: 6, marginTop: 18, background: 'rgba(176, 141, 87, 0.3)', border: '1px solid rgba(216, 193, 154, 0.55)', padding: '6px 14px', borderRadius: 6, width: 'fit-content' }}>
                 <span>Explore Advantages</span>
                 <span>→</span>
               </div>
@@ -433,14 +448,19 @@ export default async function HomePage() {
               style={{ backgroundImage: "url('/images/industries.png')" }}
             >
               <div>
-                <h3 style={{ fontSize: 20, color: '#ffffff', margin: '0 0 6px', fontWeight: 800, textShadow: '0 2px 8px rgba(0,0,0,0.5)' }}>
+                <div style={{ display: 'inline-flex', alignItems: 'center', gap: 6, background: 'rgba(176, 141, 87, 0.25)', border: '1px solid rgba(216, 193, 154, 0.45)', padding: '3px 9px', borderRadius: 4, color: '#d8c19a', fontSize: 11, fontWeight: 800, letterSpacing: 0.8, textTransform: 'uppercase', marginBottom: 10 }}>
+                  <span>04</span>
+                  <span>•</span>
+                  <span>17+ Sectors</span>
+                </div>
+                <h3 style={{ fontSize: 21, color: '#ffffff', margin: '0 0 8px', fontWeight: 800, letterSpacing: '-0.01em', textShadow: '0 2px 10px rgba(0,0,0,0.85)' }}>
                   17 Sectors We Serve
                 </h3>
-                <p style={{ color: '#f1f5f9', fontSize: 13.5, margin: 0, lineHeight: 1.5, textShadow: '0 1px 4px rgba(0,0,0,0.5)' }}>
+                <p style={{ color: '#f8fafc', fontSize: 13.5, margin: 0, lineHeight: 1.55, fontWeight: 500, textShadow: '0 1px 6px rgba(0,0,0,0.8)' }}>
                   Manufacturing, BFSI, Healthcare, IT, Real Estate, Startups & MSMEs.
                 </p>
               </div>
-              <div style={{ color: '#f8fafc', fontSize: 13.5, fontWeight: 700, display: 'flex', alignItems: 'center', gap: 6, marginTop: 14 }}>
+              <div style={{ color: '#ffffff', fontSize: 13, fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: 6, marginTop: 18, background: 'rgba(176, 141, 87, 0.3)', border: '1px solid rgba(216, 193, 154, 0.55)', padding: '6px 14px', borderRadius: 6, width: 'fit-content' }}>
                 <span>View All Sectors</span>
                 <span>→</span>
               </div>

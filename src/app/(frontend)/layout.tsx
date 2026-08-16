@@ -2,6 +2,7 @@ import React from 'react'
 import './globals.css'
 import CookieConsent from '../../components/CookieConsent'
 import ScrollReveal from '../../components/ScrollReveal'
+import SmoothScroll from '../../components/SmoothScroll'
 import { SiteHeaderServer, SiteFooter } from '../../components/SiteChrome'
 
 export const metadata = {
@@ -15,6 +16,7 @@ export default function RootLayout(props: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body suppressHydrationWarning>
+        <SmoothScroll />
         <ScrollReveal />
         <SiteHeaderServer />
         {children}
