@@ -47,6 +47,24 @@ if (dbUrl) {
 }
 
 export default buildConfig({
+  serverURL:
+    process.env.NEXT_PUBLIC_SERVER_URL ||
+    process.env.PAYLOAD_PUBLIC_SERVER_URL ||
+    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : undefined),
+  cors: [
+    process.env.NEXT_PUBLIC_SERVER_URL || '',
+    process.env.PAYLOAD_PUBLIC_SERVER_URL || '',
+    process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : '',
+    'https://te1-topaz.vercel.app',
+    'http://localhost:3000',
+  ].filter(Boolean),
+  csrf: [
+    process.env.NEXT_PUBLIC_SERVER_URL || '',
+    process.env.PAYLOAD_PUBLIC_SERVER_URL || '',
+    process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : '',
+    'https://te1-topaz.vercel.app',
+    'http://localhost:3000',
+  ].filter(Boolean),
   admin: {
     user: Users.slug,
     importMap: { baseDir: path.resolve(dirname) },
@@ -96,7 +114,11 @@ export default buildConfig({
     pool: {
       connectionString: dbUrl,
       ssl: isLocalDb ? false : { rejectUnauthorized: false },
+      connectionTimeoutMillis: 15000,
+      idleTimeoutMillis: 30000,
+      max: 10,
     },
+    push: true,
   }),
   sharp,
   upload: {
